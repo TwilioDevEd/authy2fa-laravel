@@ -1,0 +1,13 @@
+{
+  "name": "2FA in Laravel 5 with Authy",
+  "description": "Two Factor Authentication in Laravel 5 with Authy",
+  "logo": "https://static1.twilio.com/packages/company/img/logos_icon_round.png",
+  "repository": "https://github.com/rickyrobinett/Laravel5-2FA-Authy",
+  "keywords": ["twilio", "PHP", "laravel", "MMS"],
+  "env": {
+    "AUTHY_TOKEN": {
+      "description": "Your Authy authentication token",
+      "required": true
+    }
+  }
+}
