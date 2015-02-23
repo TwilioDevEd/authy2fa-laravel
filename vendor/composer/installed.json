@@ -2879,5 +2879,102 @@
             "testing",
             "tests"
         ]
+    },
+    {
+        "name": "resty/resty",
+        "version": "0.6.0",
+        "version_normalized": "0.6.0.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/fictivekin/Resty.php.git",
+            "reference": "3ba18ec4b507b3b6fcbc49bba5a503baba051c0a"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/fictivekin/Resty.php/zipball/3ba18ec4b507b3b6fcbc49bba5a503baba051c0a",
+            "reference": "3ba18ec4b507b3b6fcbc49bba5a503baba051c0a",
+            "shasum": ""
+        },
+        "require": {
+            "php": ">=5.3.0"
+        },
+        "require-dev": {
+            "funkatron/funit": "dev-master"
+        },
+        "time": "2014-02-13 16:19:46",
+        "type": "library",
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "Resty\\": "src"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "Apache 2.0"
+        ],
+        "authors": [
+            {
+                "name": "Ed Finkler",
+                "email": "ed@fictivekin.com",
+                "homepage": "http://fictivekin.com"
+            }
+        ],
+        "description": "A simple PHP library for doing RESTful HTTP stuff. Does not require the curl extension",
+        "homepage": "https://github.com/fictivekin/resty.php",
+        "keywords": [
+            "client",
+            "http",
+            "rest",
+            "restful"
+        ]
+    },
+    {
+        "name": "authy/php",
+        "version": "v2.2",
+        "version_normalized": "2.2.0.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/authy/authy-php.git",
+            "reference": "20923450907a10c446bbc595d35dd4df9f059560"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/authy/authy-php/zipball/20923450907a10c446bbc595d35dd4df9f059560",
+            "reference": "20923450907a10c446bbc595d35dd4df9f059560",
+            "shasum": ""
+        },
+        "require": {
+            "php": ">=5.3.0",
+            "resty/resty": "~0.6.0"
+        },
+        "require-dev": {
+            "eher/phpunit": ">= 1.6"
+        },
+        "time": "2014-08-15 15:08:21",
+        "type": "library",
+        "installation-source": "dist",
+        "autoload": {
+            "psr-0": {
+                "Authy": "lib"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "David Cuadrado",
+                "email": "david@authy.com"
+            }
+        ],
+        "description": "PHP client for Authy",
+        "homepage": "https://github.com/authy/authy-php",
+        "keywords": [
+            "Authentication",
+            "api",
+            "two-factor"
+        ]
     }
 ]
