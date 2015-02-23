@@ -35,6 +35,21 @@
 							</div>
 						</div>
 
+            <div class="form-group">
+              <label class="col-md-4 control-label">Country Code</label>
+              <div class="col-md-6">
+                <select id="authy-countries" name="country_code"></select>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="col-md-4 control-label">Phone Number</label>
+              <div class="col-md-6">
+                <input type="phone_number" class="form-control" name="phone_number"  id="authy-cellphone" >
+              </div>
+            </div>
+
+
 						<div class="form-group">
 							<label class="col-md-4 control-label">Password</label>
 							<div class="col-md-6">
