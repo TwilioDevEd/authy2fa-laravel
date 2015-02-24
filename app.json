@@ -9,5 +9,8 @@
       "description": "Your Authy authentication token",
       "required": true
     }
-  }
+  },
+  "scripts": {
+    "postdeploy": "php artisan migrate"
+  },
 }

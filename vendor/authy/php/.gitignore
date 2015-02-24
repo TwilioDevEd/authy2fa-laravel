@@ -1,7 +1,0 @@
-*~
-.DS_Store
-package.xml
-pkg/
-*.tmproj
-vendor/
-composer.lock
