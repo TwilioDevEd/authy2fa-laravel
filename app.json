@@ -2,7 +2,7 @@
   "name": "2FA in Laravel 5 with Authy",
   "description": "Two Factor Authentication in Laravel 5 with Authy",
   "logo": "https://static1.twilio.com/packages/company/img/logos_icon_round.png",
-  "repository": "https://github.com/rickyrobinett/Laravel5-2FA-Authy",
+  "repository": "https://github.com/TwilioDevEd/authy2fa-laravel",
   "keywords": ["twilio", "PHP", "laravel", "MMS"],
   "addons": ["heroku-postgresql:hobby-dev"],
   "env": {
