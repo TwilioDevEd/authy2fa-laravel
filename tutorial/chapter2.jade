@@ -1,0 +1,30 @@
+.step(data-title='What Goes Into a Login System?', data-file='app/User.php', data-highlight='')
+  :markdown
+    ### What Goes Into a Login System?
+
+    Authentication and authorization are some of the trickiest concepts to get right in a web application, and implementations vary quite a bit from application to application. But generally speaking, every login system has two concepts to implement:
+
+    * `User` : An individual person using the system
+    * `Session` : A series of authenticated interations a user has with the system
+
+    Laravel ships with a Session service, that is backed-up by our database so all we need to do is create a User model. A class diagram is included below to give you a sense of what each object contains and their relationship to one another:
+
+    Let's take a closer look at what each of these objects can do, starting with the `User` model.
+
+.step(data-title="The User Model", data-file='app/User.php')
+  :markdown
+    ### The User Model
+
+    The `User` model is responsible for retaining information about the user, such as their full name, mobile phone number, e-mail address, and password.
+
+    An instance of a `User` can do a variety of things related to authentication. It can compare a candidate password against a hashed password stored in the database, which is used to complete the password authentication step of our login flow.
+
+    The `User` is also responsible for our Authy integration for the 2FA step. Using the `authy` module, the `User` model can request that a message containing a one-time password be sent to a user via SMS text message. It can also verify a token entered by the user via the Authy API. We'll dive into these functions in a bit more depth later when we examine the login flow.
+
+    To make sure we have a model to test against run:
+    ```
+    php artisan migrate
+    php artisan db:seed
+    ```
+
+    Now that we have a User let's take a look at the Authentication flow.

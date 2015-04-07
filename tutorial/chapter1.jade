@@ -1,0 +1,41 @@
+.step(data-title='How It Works', data-file='app/User.php', data-highlight='')
+  :markdown
+    ### How It Works
+
+    Adding two-factor authentication (2FA) to your web application can help increase the security of your user's data. [Multi-factor authentication](http://en.wikipedia.org/wiki/Multi-factor_authentication) determines the identity of a user by validating one or more of the following "factors":
+
+    * _Knowledge Factors_ (Something a user knows, like a password)
+    * _Posession Factors_ (Something a user has, like a mobile phone)
+    * _Inheritance Factors_ (Something a user is, like a person with a unique finger print)
+
+    We're about to walk you through a sample application that implements a simple login system with a _knowledge factor_ and a _posession factor_. For the knowledge factor, we will use a standard username/password system. For the possession factor, we will validate that the user has their mobile phone by sending them a one-time passcode in a text message [sent with Authy via Twilio](http://www.authy.com/). Here's how this works at a high level:
+
+    ![2FA High Level](//s3.amazonaws.com/howtodocs/2fa-high-level.png)
+
+    Now it's time to look at some code! We'll begin by understanding the moving parts of this example [PHP](http://php.net/) application before diving into the actual implementation of the login flow.
+
+.step(data-title="Our App's Dependencies", data-file='composer.json')
+  :markdown
+    ### Our App's Dependencies
+
+    Our application relies on a few third party libraries to deliver this application. Some of the notable ones are:
+
+    * [`laravel`](http://laravel.com/) : A beautiful web framework for PHP developers.
+    * [`mysql`](http://www.mysql.com/) : A database
+    * [`authy`](https://github.com/authy/authy-php) : A high-level helper library for working with the Authy API
+
+    If you haven't already, now is the time to [sign up for Authy](https://dashboard.authy.com/signup). Create your first application, naming it whatever you wish. After you create your application, your "production" API key will be visible on your [dashboard](https://dashboard.authy.com):
+
+    ![Authy Dashboard](//s3.amazonaws.com/howtodocs/2fa-authy-dashboard.png)
+
+    Let's take a look at how our application is configured next.
+
+.step(data-title="Application Configuration", data-file='composer.json')
+  :markdown
+    ### Application Configuration
+
+    We'll be using MySQL to store information about our user. So make sure you create a MySQL database and ensure database configuration in `config/database.php` is correct.
+
+    Additionally we'll be accessing the Authy api a lot using the `AUTHY_TOKEN`, so make sure you have this set as an [environment variable](//www.twilio.com/blog/2015/02/managing-development-environment-variables-across-multiple-ruby-applications.html).
+
+    Next, let's take a look at how we create our User model and register it with Authy.
