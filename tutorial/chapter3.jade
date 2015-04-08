@@ -1,6 +1,6 @@
 .step(data-title='The Authentication Flow', data-file='app/Http/Controllers/Auth/AuthController.php', data-highlight='')
   :markdown
-    ### The Authentication Flow
+    ## The Authentication Flow
 
     Laravel 5 provides us with a really great built in Authentication framework. We don't want to reinvent the wheel so we'll be expanding on what Laravel already provides us. 
 
@@ -8,7 +8,7 @@
 
 .step(data-title="The Login Form", data-file='resources/views/auth/login.blade.php', data-language='html')
   :markdown
-    ### The Login Form
+    ## The Login Form
 
     ![2FA Flow Chart Step 2](//s3.amazonaws.com/howtodocs/2fa-flow2.png)
 
@@ -20,7 +20,7 @@
 
 .step(data-title="Validate Login Credentials", data-file='app/Http/Controllers/Auth/AuthController.php', data-highlight='42-55')
   :markdown
-    ### Validate our User's Login Credentials
+    ## Validate our User's Login Credentials
 
     On the server, this is the handler function for the `POST /login` route which we requested via our login form. Using the `User` model, we first find a user instance with the e-mail address in the POST parameters. If that user exists, we test the password that the user entered against the hashed password to see if it's correct.
 
@@ -29,7 +29,7 @@
 
 .step(data-title="Sending a 2FA Token", data-file='app/User.php', data-highlight='35-54')
   :markdown
-    ### Sending a 2FA Token
+    ## Sending a 2FA Token
 
     ![2FA Flow Chart Step 5](//s3.amazonaws.com/howtodocs/2fa-flow5.png)
 
@@ -43,7 +43,7 @@
 
 .step(data-title="The Verification Form", data-file='resources/views/auth/twofactor.blade.php', data-language="html")
   :markdown
-    ### The Verification Form
+    ## The Verification Form
 
     ![2FA Flow Chart Step 7](//s3.amazonaws.com/howtodocs/2fa-flow7.png)
 
@@ -57,7 +57,7 @@
 
 .step(data-title="Validate the Code: Step 1", data-file='app/Http/Controllers/Auth/AuthController.php', data-highlight='61-77')
   :markdown
-    ### Validating the Code on the Controller
+    ## Validating the Code on the Controller
 
     ![2FA Flow Chart Step 8](//s3.amazonaws.com/howtodocs/2fa-flow8.png)
 
@@ -67,7 +67,7 @@
 
 .step(data-title="Validate the Code: Step 2", data-file='app/User.php', data-highlight='56-65')
   :markdown
-    ### Validating the Code with Authy
+    ## Validating the Code with Authy
 
     ![2FA Flow Chart Step 8](//s3.amazonaws.com/howtodocs/2fa-flow8.png)
 
@@ -77,7 +77,7 @@
 
 .step(data-title="All Done!", data-file='app/User.php')
   :markdown
-    ### All Done!
+    ## All Done!
 
     We now have a working 2FA login system for our application. By using Authy for this, we are able to take advantage of a mobile application for 2FA and let them handle sending international SMS messages. This enables us to spend more time on the actual business logic for our application.
 
