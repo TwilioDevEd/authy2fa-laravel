@@ -13,5 +13,5 @@
   },
   "scripts": {
     "postdeploy": "php artisan migrate"
-  },
+  }
 }
