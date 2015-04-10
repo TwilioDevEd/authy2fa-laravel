@@ -6,15 +6,14 @@
   "logo": "https://s3.amazonaws.com/howtodocs/twilio-logo.png",
   "success_url": "/landing.html",
   "keywords": ["twilio", "PHP", "laravel", "MMS"],
-  "addons": ["heroku-postgresql:hobby-dev"],
+  "addons": ["heroku-postgresql:dev"],
   "env": {
-    "BUILDPACK_URL": "https://github.com/heroku/heroku-buildpack-php",
     "AUTHY_TOKEN": {
       "description": "Your Authy authentication token",
       "required": true
     }
   },
   "scripts": {
-    "postdeploy": "php artisan migrate"
+    "postdeploy": "php /app/artisan migrate"
   }
 }
