@@ -4,7 +4,7 @@
   "website": "https://www.twilio.com/docs/howto/walkthrough/two-factor-authentication/php/laravel",
   "repository": "https://github.com/TwilioDevEd/authy2fa-laravel",
   "logo": "https://s3.amazonaws.com/howtodocs/twilio-logo.png",
-  "success_url": "/",
+  "success_url": "/landing.html",
   "keywords": ["twilio", "PHP", "laravel", "MMS"],
   "addons": ["heroku-postgresql:hobby-dev"],
   "env": {
