@@ -17,6 +17,7 @@
         </div>
         <p>Please enter your Token</p>
         <form id="authy-sms-form" class="form-horizontal" role="form" method="POST" action="/auth/twofactor">
+          <input type="hidden" name="_token" value="{{ csrf_token() }}">
           <div class='form-group'>
             <label class="col-md-4 control-label" for="token">Authy Token</label>
             <div class='col-md-6'>

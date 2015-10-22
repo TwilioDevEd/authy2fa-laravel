@@ -24,12 +24,11 @@ $(document).ready(function() {
       
       if (data.status == 'approved') {
         window.location.href = "/home";
-      } else if (data == 'denied') {
+      } else if (data.status == 'denied') {
         showTokenForm();
         triggerSMSToken();
       } else {
-        console.log(data);
-        setTimeout(checkForOneTouch, 4000);
+        setTimeout(checkForOneTouch, 2000);
       }
     })
   };
