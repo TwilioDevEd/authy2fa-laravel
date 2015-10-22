@@ -36,17 +36,7 @@ class AuthyController extends Controller {
 	 * @return Response
 	 */
 
-	// Check status of user 
-	public function status(Request $request) {
-    $user = User::find(Session::get('id'));
-    $status = $user->authy_status;
-    if($status == 'approved') {
-      Auth::login($user);
-    }
-    return response()->json(['status' => $status, 'response' => Session::get('request')]);
-  }
-
-  // Public webhook for Authy
+	// Public webhook for Authy
 	public function callback(Request $request) {
 		$authy_id = $request->input('authy_id');
 		$user = User::where('authy_id', '=', $authy_id)->firstOrFail();
@@ -57,6 +47,16 @@ class AuthyController extends Controller {
 		} else {
 		  return "invalid";
 		}  
+  }
+
+	// Check status of user 
+	public function status(Request $request) {
+    $user = User::find(Session::get('id'));
+    $status = $user->authy_status;
+    if($status == 'approved') {
+      Auth::login($user);
+    }
+    return response()->json(['status' => $status, 'response' => Session::get('request')]);
   }
 
 }
