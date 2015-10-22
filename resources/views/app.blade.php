@@ -6,6 +6,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Laravel</title>
 
+	<link href="//maxcdn.bootstrapcdn.com/bootswatch/3.3.5/flatly/bootstrap.min.css" rel="stylesheet">
 	<link href="/css/app.css" rel="stylesheet">
 
 	<!-- Fonts -->
@@ -22,6 +23,7 @@
 	<![endif]-->
 </head>
 <body>
+	@yield('modals')
 	<nav class="navbar navbar-default">
 		<div class="container-fluid">
 			<div class="navbar-header">
@@ -55,6 +57,9 @@
 			</div>
 		</div>
 	</nav>
+	@if(Session::has('message'))
+		<div class="alert alert-info">{{ Session::get('message') }}</div>
+	@endif
 
 	@yield('content')
 
@@ -62,6 +67,7 @@
 	<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 	<script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.1/js/bootstrap.min.js"></script>
   <script src="https://www.authy.com/form.authy.min.js" type="text/javascript"></script>
+  @yield('js')
   <script>
     Authy.UI.ui = new Authy.UI();
     Authy.UI.ui.init();

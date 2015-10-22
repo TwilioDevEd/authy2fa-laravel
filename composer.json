@@ -6,7 +6,8 @@
 	"type": "project",
 	"require": {
 		"laravel/framework": "5.0.*",
-		"authy/php": "~2.2"
+		"authy/php": "~2.2",
+		"barryvdh/laravel-debugbar": "~1.8"
 	},
 	"require-dev": {
 		"phpunit/phpunit": "~4.0",
