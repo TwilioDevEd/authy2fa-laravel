@@ -9,6 +9,7 @@ use Illuminate\Contracts\Auth\Guard;
 use Illuminate\Contracts\Auth\Registrar;
 use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
 
+
 class AuthController extends Controller {
 
   /*
@@ -43,10 +44,10 @@ class AuthController extends Controller {
     $credentials = $request->only('email','password');
     if(Auth::validate($credentials)) {
       $user = User::where('email', '=', $request->input('email'))->firstOrFail(); 
-      $user->sendToken();
+      $status = $user->sendOneTouch('Request to Login to Twilio demo app');
       Session::set('password_validated', true);
       Session::set('id', $user->id);
-      return redirect('/auth/twofactor'); 
+      return response($status);
     } else {
         return redirect('/auth/login')->withErrors([
             'email' => 'The email and password combination you entered is incorrect.',

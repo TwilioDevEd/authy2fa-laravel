@@ -1,4 +1,36 @@
 @extends('app')
+@section('modals')
+<div class="modal fade" id="authy-modal">
+  <div class='modal-dialog'>
+    <div class="modal-content">
+      <div class='modal-header'>
+        <h4 class='modal-title'>Please Authenticate</h4>
+      </div>
+      <div class='modal-body auth-ot'>
+        <div class='help-block'>
+          <i class="fa fa-spinner fa-pulse"></i> Waiting for OneTouch Approval ...
+        </div>
+      </div>
+      <div class='modal-body auth-token'>
+        <div class='help-block'>
+          <i class="fa fa-mobile"></i> Authy OneTouch not available
+        </div>
+        <p>Please enter your Token</p>
+        <form id="authy-sms-form" class="form-horizontal" role="form" method="POST" action="/auth/twofactor">
+          <div class='form-group'>
+            <label class="col-md-4 control-label" for="token">Authy Token</label>
+            <div class='col-md-6'>
+              <input type="text" name="token" id="authy-token" ng-model="token" value="" class="form-control" autocomplete="off" />
+            </div>
+          </div>
+          <a value="Verify" class="btn btn-default" href="#" ng-click="cancel()">Cancel</a>
+          <input type="submit" name="commit" value="Verify2" class="btn btn-success" ng-click="verifyToken(token)" />
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+@endsection
 
 @section('content')
 <div class="container-fluid">
@@ -18,7 +50,7 @@
             </div>
           @endif
 
-          <form class="form-horizontal" role="form" method="POST" action="/auth/login">
+          <form id="login-form" class="form-horizontal" role="form" method="POST" action="/auth/login">
             <input type="hidden" name="_token" value="{{ csrf_token() }}">
 
             <div class="form-group">
@@ -60,4 +92,8 @@
     </div>
   </div>
 </div>
+@endsection
+
+@section('js')
+<script src="/js/sessions.js" type="text/javascript"></script>
 @endsection
