@@ -30,7 +30,7 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 	 *
 	 * @var array
 	 */
-	protected $hidden = ['password', 'remember_token', 'authy_id'];
+	protected $hidden = ['password', 'remember_token', 'authy_status', 'authy_id'];
 
   public function register_authy() {
     $authy_api = new AuthyApi(getenv('AUTHY_TOKEN'));
@@ -44,6 +44,34 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
       // something went wrong 
       return false;
     }
+  }
+
+  public function sendOneTouch($message) {
+    // reset oneTouch status
+    if($this->authy_status != 'unverified') {
+      $this->authy_status = 'unverified';
+      $this->save();
+    }
+    
+    $params = array(
+      'api_key'=>getenv('AUTHY_TOKEN'),
+      'message'=>$message,
+      'details[Email]'=>$this->email,
+    );
+
+    $defaults = array(
+      CURLOPT_URL => "https://api.authy.com/onetouch/json/users/$this->authy_id/approval_requests", 
+      CURLOPT_POST => true,
+      CURLOPT_POSTFIELDS => $params,
+    );
+
+    $ch = curl_init();
+    curl_setopt_array($ch, $defaults);
+    $output = curl_exec($ch); 
+    curl_close($ch);
+    $json = json_decode($output);
+
+    return $json;
   }
 
   public function sendToken() {

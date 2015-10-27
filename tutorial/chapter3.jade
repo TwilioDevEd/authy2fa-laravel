@@ -1,61 +1,14 @@
-.step(data-title='The Authentication Flow', data-file='app/Http/Controllers/Auth/AuthController.php', data-highlight='')
-  :markdown
-    ## The Authentication Flow
-
-    Laravel 5 provides us with a really great built in Authentication framework. We don't want to reinvent the wheel so we'll be expanding on what Laravel already provides us. 
-
-    The first stop on the A-train is the login process. Let's take a look first at the form and then next at the controller.
-
-.step(data-title="The Login Form", data-file='resources/views/auth/login.blade.php', data-language='htmlembedded')
-  :markdown
-    ## The Login Form
-
-    ![2FA Flow Chart Step 2](//s3.amazonaws.com/howtodocs/2fa-flow2.png)
-
-    On this login form, the user will attempt to validate the first "factor" of their identity, which is a password they already know. The user will enter their e-mail address and password in this form, and will send it to our server for validation.
-
-    With a little CSS assist from [Twitter Bootstrap](http://getbootstrap.com/) the login form will look something like this:
-
-    ![The Login Form](//s3.amazonaws.com/howtodocs/2fa-screen-login.png)
-
-.step(data-title="Validate Login Credentials", data-file='app/Http/Controllers/Auth/AuthController.php', data-highlight='42-55')
-  :markdown
-    ## Validate our User's Login Credentials
-
-    On the server, this is the handler function for the `POST /login` route which we requested via our login form. Using the `User` model, we first find a user instance with the e-mail address in the POST parameters. If that user exists, we test the password that the user entered against the hashed password to see if it's correct.
-
-    If the e-mail / password combination match, we set `password_validated` to true in the Session and we add our `User` to the session. Lastly we redirect our request to /auth/twofactor so let's look at how we send a two-factor auth token using Authy.
-
-
-.step(data-title="Sending a 2FA Token", data-file='app/User.php', data-highlight='35-54')
+.step(data-file='app/User.php', data-highlight='78-83')
   :markdown
     ## Sending a 2FA Token
 
     ![2FA Flow Chart Step 5](//s3.amazonaws.com/howtodocs/2fa-flow5.png)
 
-    Before we can send out a one-time password via Authy, we need to [register a new Authy user](http://docs.authy.com/#section-9) and obtain a unique ID for that user in their system. We store that ID on our `User` model to tie our app's user and the associated Authy user together.
-
-    Once there is an Authy user ID associated with our user model, we can request that an SMS verification token be sent out to the user's phone. Authy supports token validation in their mobile app as well, but for our purposes we'll just use text messages every time.
+    Once there is an Authy user ID associated with our user model, we can request that an SMS verification token be sent out to the user's phone. Authy supports token validation in their mobile app as well, so if our user has the app it will default to sending a push notification instead of an SMS.
 
     We can call this method on the user instance multiple times if needed, which is what happens every time the user clicks "Resend Code" on the web form we are about to look at!
 
-    Now that the user has been sent a one-time password via SMS, let's check out the UI they interact with to validate their code.
-
-.step(data-title="The Verification Form", data-file='resources/views/auth/twofactor.blade.php', data-language="htmlembedded")
-  :markdown
-    ## The Verification Form
-
-    ![2FA Flow Chart Step 7](//s3.amazonaws.com/howtodocs/2fa-flow7.png)
-
-    On this form, the user will enter the code that was sent to their mobile phone via SMS. If for some reason they didn't get the code, clicking the "Resend Code" link will initiate an Ajax request to the server which will use Authy to send them a new code.
-
-    The verification form will look something like this to the end user:
-
-    ![The Verification Form](//s3.amazonaws.com/howtodocs/2fa-screen-verify.png)
-
-    Let's see how we verify the code they submitted.
-
-.step(data-title="Validate the Code: Step 1", data-file='app/Http/Controllers/Auth/AuthController.php', data-highlight='61-77')
+.step(data-title="Validate the Code: Step 1", data-file='app/Http/Controllers/Auth/AuthController.php', data-highlight='62-78')
   :markdown
     ## Validating the Code on the Controller
 
@@ -65,7 +18,7 @@
 
     This is a great opportunity to dive-in to the verifyToken() function.
 
-.step(data-title="Validate the Code: Step 2", data-file='app/User.php', data-highlight='56-65')
+.step(data-title="Validate the Code: Step 2", data-file='app/User.php', data-highlight='85-94')
   :markdown
     ## Validating the Code with Authy
 
@@ -75,10 +28,26 @@
 
     And voilah, we have a User who is valid over two-factors of authentication.
 
-.step(data-title="All Done!", data-file='app/User.php')
+.step
   :markdown
-    ## All Done!
+    ## Where to next?
 
-    We now have a working 2FA login system for our application. By using Authy for this, we are able to take advantage of a mobile application for 2FA and let them handle sending international SMS messages. This enables us to spend more time on the actual business logic for our application.
+    That's it! We've just implemented two-factor auth using three different methods and the latest in Authy technology.
 
-    Thanks for checking out this tutorial! If you have any feedback to share with us, we'd love to hear it. Tweet [@twilio](http://twitter.com/twilio) to let us know what you think.
+    If you're a PHP developer working with Twilio, you might want to
+    check out these other tutorials.
+
+    [**Call Tracking**](//www.twilio.com/docs/howto/walkthrough/call-tracking/php/laravel)
+
+    Measure the effectiveness of different marketing campaigns with unique phone numbers.
+
+    [**Server
+    Notifications via SMS**](//www.twilio.com/docs/howto/walkthrough/server-notifications/php/laravel)
+
+    Faster than e-mail and less likely to get blocked, text messages are great for timely alerts and notifications. Learn how to send out SMS (and MMS) notifications to a list of server administrators.
+
+    ### Did this help?
+
+    Thanks for checking out this tutorial! If you have any feedback to share 
+    with us, we'd love to hear it. Tweet [@twilio](http://twitter.com/twilio) 
+    to let us know what you think.

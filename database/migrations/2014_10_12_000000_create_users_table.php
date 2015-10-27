@@ -20,6 +20,7 @@ class CreateUsersTable extends Migration {
 			$table->string('password', 60);
       $table->string('country_code');
       $table->string('phone_number');
+      $table->string('authy_status')->default('unverified');
       $table->string('authy_id')->nullable();;
 			$table->rememberToken();
 			$table->timestamps();

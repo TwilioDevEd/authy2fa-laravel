@@ -1,41 +1,54 @@
 .step(data-title='How It Works', data-file='app/User.php', data-highlight='')
   :markdown
-    ## How It Works
+    ## About this application
 
-    Adding two-factor authentication (2FA) to your web application can help increase the security of your user's data. [Multi-factor authentication](http://en.wikipedia.org/wiki/Multi-factor_authentication) determines the identity of a user by validating one or more of the following "factors":
+    This [PHP](http://php.net/) [Laravel](http://laravel.com/) sample application is an
+      example of typical login flow. To run this sample
+      app yourself, [download the code and follow the instructions on
+      GitHub](https://github.com/TwilioDevEd/authy2fa-laravel).
 
-    * _Knowledge Factors_ (Something a user knows, like a password)
-    * _Posession Factors_ (Something a user has, like a mobile phone)
-    * _Inherence Factors_ (Something a user is, like a person with a unique finger print)
+    Adding two-factor authentication (2FA) to your web application increases the 
+    security of your user's data. [Multi-factor authentication](http://en.wikipedia.org/wiki/Multi-factor_authentication) 
+    determines the identity of a user by validating once by logging into the app, 
+    and second by validating their mobile device.
 
-    We're about to walk you through a sample application that implements a simple login system with a _knowledge factor_ and a _posession factor_. For the knowledge factor, we will use a standard username/password system. For the possession factor, we will validate that the user has their mobile phone by sending them a one-time passcode in a text message [sent with Authy via Twilio](http://www.authy.com/). Here's how this works at a high level:
+    For the second factor, we will validate that the user has their mobile phone by either:
+    * Sending them a OneTouch push notification to their mobile Authy app or
+    * Sending them a token through their mobile Authy app or
+    * Sending them a one-time token in a text message [sent with Authy via Twilio](http://www.authy.com/). Here's how this works at a high level:
 
     ![2FA High Level](//s3.amazonaws.com/howtodocs/2fa-high-level.png)
 
-    Now it's time to look at some code! We'll begin by understanding the moving parts of this example [PHP](http://php.net/) application before diving into the actual implementation of the login flow.
+    Let's get started! Click the right arrow above to move to the next step
+      of the tutorial.
 
-.step(data-title="Our App's Dependencies", data-file='composer.json')
+    ---
+
+    **See Also:**
+    * [Getting Started with Laravel](http://laravel.com/docs/4.2/quick)
+    * [PHP Client for Authy](https://github.com/authy/authy-php)
+    * [Laravel Basic Authentication](//laravel.com/docs/4.2/security#authenticating-users)
+
+
+.step(data-file='.env.local.php', data-highlight='')
   :markdown
-    ## Our App's Dependencies
+    ## Configuring Authy
 
-    Our application relies on a few third party libraries to deliver this application. Some of the notable ones are:
-
-    * [`laravel`](http://laravel.com/) : A beautiful web framework for PHP developers.
-    * [`mysql`](http://www.mysql.com/) : A database
-    * [`authy`](https://github.com/authy/authy-php) : A high-level helper library for working with the Authy API
-
-    If you haven't already, now is the time to [sign up for Authy](https://dashboard.authy.com/signup). Create your first application, naming it whatever you wish. After you create your application, your "production" API key will be visible on your [dashboard](https://dashboard.authy.com):
+    If you haven't already, now is the time to [sign up for Authy](https://dashboard.authy.com/signup). 
+    Create your first application, naming it whatever you wish. After you create your application, 
+    your "production" API key will be visible on your [dashboard](https://dashboard.authy.com):
 
     ![Authy Dashboard](//s3.amazonaws.com/howtodocs/2fa-authy-dashboard.png)
 
-    Let's take a look at how our application is configured next.
+    Once we have an Authy API key, we store it in this 
+    .env file. 
 
-.step(data-title="Application Configuration", data-file='composer.json')
-  :markdown
-    ## Application Configuration
+    Now that we've configured our Rails app, let's take a look at how we 
+    register a user with Authy.
 
-    We'll be using MySQL to store information about our user. So make sure you create a MySQL database and ensure database configuration in `config/database.php` is correct.
+    ---
 
-    Additionally we'll be accessing the Authy api a lot using the `AUTHY_TOKEN`, so make sure you have this set as an [environment variable](//www.twilio.com/blog/2015/02/managing-development-environment-variables-across-multiple-ruby-applications.html).
-
-    Next, let's take a look at how we create our User model and register it with Authy.
+      **See Also:**
+      * [Managing Environment Variables in Laravel](http://laravel.com/docs/4.2/configuration)
+      * [StackOverflow: Installing the Postgres driver for Mac](http://stackoverflow.com/questions/61747/installing-pdo-drivers-for-postgresql-on-mac-using-zend-for-eclipse#answer-1286153)
+      * [Better debugging for Laravel](https://github.com/barryvdh/laravel-debugbar)
