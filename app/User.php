@@ -52,7 +52,6 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
       $this->authy_status = 'unverified';
       $this->save();
     }
-    debug($this->authy_status);
     
     $params = array(
       'api_key'=>getenv('AUTHY_TOKEN'),
