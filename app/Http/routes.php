@@ -16,7 +16,7 @@ Route::get('/', 'HomeController@index');
 Route::get('home', 'HomeController@index');
 
 Route::get('authy/status', 'Auth\AuthyController@status');
-Route::post('authy/callback', 'Auth\AuthyController@callback');
+Route::post('authy/callback', ['middleware' => 'validate_authy'], 'Auth\AuthyController@callback');
 
 Route::controllers([
 	'auth' => 'Auth\AuthController',
