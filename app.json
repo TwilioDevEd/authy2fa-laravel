@@ -6,7 +6,7 @@
   "logo": "https://s3.amazonaws.com/howtodocs/twilio-logo.png",
   "success_url": "/landing.html",
   "keywords": ["twilio", "PHP", "laravel", "MMS"],
-  "addons": ["heroku-postgresql:dev"],
+  "addons": ["heroku-postgresql:hobby-dev"],
   "env": {
     "AUTHY_TOKEN": {
       "description": "Your Authy authentication token",
