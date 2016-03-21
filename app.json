@@ -8,7 +8,7 @@
   "keywords": ["twilio", "PHP", "laravel", "MMS"],
   "addons": ["heroku-postgresql:hobby-dev"],
   "env": {
-    "AUTHY_TOKEN": {
+    "AUTHY_API_KEY": {
       "description": "Your Authy authentication token",
       "required": true
     }
