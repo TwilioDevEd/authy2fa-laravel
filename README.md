@@ -11,3 +11,8 @@ In this example application, you will learn how to create a login system for Lar
 ## LICENSE
 
 MIT
+
+---------------
+<a href="http://twilio.com/signal">![](https://s3.amazonaws.com/baugues/signal-logo.png)</a>
+
+Join us in San Francisco May 24-25th to [learn directly from the developers who build Authy](https://www.twilio.com/signal/schedule/2crLXWsVZaA2WIkaCUyYOc/aut). 
