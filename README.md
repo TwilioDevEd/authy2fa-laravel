@@ -23,7 +23,7 @@ In this example application, you will learn how to create a login system for Lar
 1. Create a database.
 
   ```bash
-  $ createdb authy2fa_laravel
+  $ createdb authy_laravel
   ```
 1. Copy the sample configuration file and edit it to match your configuration.
 
