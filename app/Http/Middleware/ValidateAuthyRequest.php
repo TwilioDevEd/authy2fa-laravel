@@ -52,7 +52,7 @@ class ValidateAuthyRequest {
 
 	public function handle($request, Closure $next)
 	{
-		$key = env('AUTHY_TOKEN');
+		$key = env('AUTHY_API_KEY');
 		$url = $request->url();
 		$params = $request->all();
 		$nonce = $request->header("X-Authy-Signature-Nonce");

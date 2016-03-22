@@ -1,11 +1,17 @@
 <?php
+$host = '';
+$username = '';
+$password = '';
+$database = '';
 
-$url = parse_url(getenv("DATABASE_URL"));
-
-$host = $url["host"];
-$username = $url["user"];
-$password = $url["pass"];
-$database = substr($url["path"], 1);
+$databaseUrl = getenv("DATABASE_URL");
+if ($databaseUrl) {
+  $url = parse_url(getenv("DATABASE_URL"));
+  $host = $url["host"];
+  $username = $url["user"];
+  $password = $url["pass"];
+  $database = substr($url["path"], 1);
+}
 
 return [
 
@@ -71,16 +77,16 @@ return [
 			'strict'    => false,
 		],
 
-		'pgsql' => [
-			'driver'   => 'pgsql',
-			'host'     => $host,
-			'database' => $database,
-			'username' => $username,
-			'password' => $password,
-			'charset'  => 'utf8',
-			'prefix'   => '',
-			'schema'   => 'public',
-		],
+    'pgsql' => [
+        'driver'   => 'pgsql',
+        'host'      => env('DB_HOST', $host),
+        'database'  => env('DB_DATABASE', $database),
+        'username'  => env('DB_USERNAME', $username),
+        'password'  => env('DB_PASSWORD', $password),
+        'charset'  => 'utf8',
+        'prefix'   => '',
+        'schema'   => 'public',
+    ],
 
 		'sqlsrv' => [
 			'driver'   => 'sqlsrv',
