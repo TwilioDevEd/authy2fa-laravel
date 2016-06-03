@@ -9,14 +9,14 @@
 .wrapper {
   height:100%;
   width:100%;
-}</style><link rel="shortcut icon" href="//twilio.com/bundles/marketing/img/favicons/favicon.ico"><link rel="apple-touch-icon" href="//twilio.com/bundles/marketing/img/favicons/favicon_57.png"><link rel="apple-touch-icon" sizes="72x72" href="//twilio.com/bundles/marketing/img/favicons/favicon_72.png"><link rel="apple-touch-icon" sizes="114x114" href="//twilio.com/bundles/marketing/img/favicons/favicon_114.png"><link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css"><link rel="stylesheet" href="viewsaurus.css"></head><body><div class="wrapper"><div id="viewsaurus" data-title="Two-Factor Authentication with Authy"><div class="saurus-panes"><div class="saurus-prose"><div class="saurus-prose-header"><div class="title-outer"><span class="step-title">Two-Factor Authentication with Authy</span></div></div><div class="saurus-nav-buttons"><div class="saurus-nav-button nav-overview"><div class="saurus-nav-button-inner"><i class="fa fa-fw fa-list"></i></div><div class="nav-divider"></div></div><div class="saurus-nav-button nav-previous"><div class="saurus-nav-button-inner"><a href=""> <i class="fa fa-fw fa-play fa-rotate-180"></i></a></div><div class="nav-divider"></div></div><div class="saurus-nav-button nav-next clickable"><div class="saurus-nav-button-inner"><a href="#1"> <i class="fa fa-fw fa-play"></i></a></div></div><div class="saurus-next-title"><span class="next-title-inner"></span></div></div><div class="saurus-progress-bar"></div><div class="saurus-start"><p>Learn to implement two-factor authentication (2FA) in your web app with Twilio-powered Authy. 2FA helps further secure your users' data by validating more than just a password. This tutorial will show you the code to make it happen.</p><a href="#0">Start Tutorial</a></div><div class="saurus-content"><div data-title="Application Setup" class="chapter"><div data-title="How It Works" data-file="app/User.php" data-highlight="" class="step"><h2 id="about-this-application">About this application</h2>
+}</style><link rel="shortcut icon" href="//twilio.com/bundles/marketing/img/favicons/favicon.ico"><link rel="apple-touch-icon" href="//twilio.com/bundles/marketing/img/favicons/favicon_57.png"><link rel="apple-touch-icon" sizes="72x72" href="//twilio.com/bundles/marketing/img/favicons/favicon_72.png"><link rel="apple-touch-icon" sizes="114x114" href="//twilio.com/bundles/marketing/img/favicons/favicon_114.png"><link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css"><link rel="stylesheet" href="viewsaurus.css"></head><body><div class="wrapper"><div id="viewsaurus" data-title="Two-Factor Authentication with Authy"><div class="saurus-panes"><div class="saurus-prose"><div class="saurus-prose-header"><div class="title-outer"><span class="step-title">Two-Factor Authentication with Authy</span></div></div><div class="saurus-nav-buttons"><div class="saurus-nav-button nav-overview"><div class="saurus-nav-button-inner"><i class="fa fa-fw fa-list"></i></div><div class="nav-divider"></div></div><div class="saurus-nav-button nav-previous"><div class="saurus-nav-button-inner"><a href=""> <i class="fa fa-fw fa-play fa-rotate-180"></i></a></div><div class="nav-divider"></div></div><div class="saurus-nav-button nav-next clickable"><div class="saurus-nav-button-inner"><a href="#1"> <i class="fa fa-fw fa-play"></i></a></div></div><div class="saurus-next-title"><span class="next-title-inner"></span></div></div><div class="saurus-progress-bar"></div><div class="saurus-start"><p>Learn to implement two-factor authentication (2FA) in your web app with Twilio-powered Authy. 2FA helps further secure your users' data by validating more than just a password. This tutorial will show you the code to make it happen.</p><a href="#0">Start Tutorial</a></div><div class="saurus-content"><div data-title="How It Works" data-file="app/User.php" data-highlight="" class="step"><h2 id="about-this-application">About this application</h2>
 <p>This <a href="//php.net/">PHP</a> <a href="//laravel.com/">Laravel</a> sample application is an
 example of typical login flow. To run this sample
 app yourself, <a href="//github.com/TwilioDevEd/authy2fa-laravel">download the code and follow the instructions on
 GitHub</a>.</p>
-<p>Adding two-factor authentication (2FA) to your web application increases the 
-security of your user&#39;s data. <a href="//en.wikipedia.org/wiki/Multi-factor_authentication">Multi-factor authentication</a> 
-determines the identity of a user by validating once by logging into the app, 
+<p>Adding two-factor authentication (2FA) to your web application increases the
+security of your user&#39;s data. <a href="//en.wikipedia.org/wiki/Multi-factor_authentication">Multi-factor authentication</a>
+determines the identity of a user by validating once by logging into the app,
 and second by validating their mobile device.</p>
 <p>For the second factor, we will validate that the user has their mobile phone by either:</p>
 <ul>
@@ -35,14 +35,12 @@ and second by validating their mobile device.</p>
 <li><a href="//laravel.com/docs/5.1/authentication#authentication-quickstart">Laravel Basic Authentication</a></li>
 </ul>
 </div><div data-file=".env.example" data-highlight="10" class="step"><h2 id="configuring-authy">Configuring Authy</h2>
-<p>If you haven&#39;t already, now is the time to <a href="//dashboard.authy.com/signup">sign up for Authy</a>. 
-Create your first application, naming it whatever you wish. After you create your application, 
+<p>If you haven&#39;t configured Authy already now is the time to <a href="//dashboard.authy.com/signup">sign up for Authy</a>.
+Create your first application naming it as you wish. After you create your application,
 your &quot;production&quot; API key will be visible on your <a href="//dashboard.authy.com">dashboard</a>:</p>
 <p><img src="//s3.amazonaws.com/howtodocs/2fa-authy-dashboard.png" alt="Authy Dashboard"></p>
-<p>Once we have an Authy API key, we store it in this 
-.env file. </p>
-<p>Now that we&#39;ve configured our Laravel app, let&#39;s take a look at how we 
-register a user with Authy.</p>
+<p>Once we have an Authy API key we register it as a environment variable.</p>
+<p>Let&#39;s take a look at how we register a user with Authy.</p>
 <hr>
 <p>  <strong>See Also:</strong></p>
 <ul>
@@ -50,14 +48,16 @@ register a user with Authy.</p>
 <li><a href="//stackoverflow.com/questions/61747/installing-pdo-drivers-for-postgresql-on-mac-using-zend-for-eclipse#answer-1286153">StackOverflow: Installing the Postgres driver for Mac</a></li>
 <li><a href="//github.com/barryvdh/laravel-debugbar">Better debugging for Laravel</a></li>
 </ul>
-</div></div><div data-title="Logging in with Authy OneTouch" class="chapter"><div data-title="What Goes Into a Login System?" data-file="app/User.php" data-highlight="35-47" class="step"><h2 id="registering-a-user-with-authy">Registering a User with Authy</h2>
-<p>When a new User is created we also register the User with Authy.</p>
-<p>All Authy needs to get a user set up for your application is the email,
-phone number and country code. In order to do two-factor authentication,
-we need to make sure we ask for these things at the point of sign up.</p>
-<p>Once we register the User with Authy we get an <code>id</code> back that we will
-store as the user&#39;s <code>authyId</code>. This is very important since it&#39;s how we
-will verify the identity of our User with Authy.</p>
+</div><div data-file="app/User.php" data-highlight="35-47" class="step"><h2 id="registering-a-user-with-authy">Registering a User with Authy</h2>
+<p>When a new user <em>signs up</em> for our website, we will call this route. This
+will save our new user to the database and will register the user
+with Authy.</p>
+<p>In order to set up your application, Authy only needs the user&#39;s <em>email</em>,
+<em>phone number</em> and <em>country code</em>. In order to do a <em>two-factor authentication</em>,
+we need to make sure we ask for this information at sign up.</p>
+<p>Once we register the User with Authy we get an <strong>authy id</strong> back. This is
+very important since it&#39;s how we will verify the identity of our User with
+Authy.</p>
 <hr>
 <p><strong>See Also:</strong></p>
 <ul>
@@ -66,27 +66,27 @@ factor_on_a_user">Enabling a User with Authy</a></li>
 <li><a href="//laravel.com/docs/5.1/eloquent">Getting started with Eloquent ORM</a></li>
 </ul>
 </div><div data-file="app/Http/Controllers/Auth/AuthController.php" data-highlight="43-56" class="step"><h2 id="logging-in-with-authy-onetouch">Logging in with Authy OneTouch</h2>
-<p>When a User attempts to log in to our website, we will ask them for a second 
-form of identification. Let&#39;s take a look at Authy&#39;s OneTouch verification first. </p>
+<p>When a User attempts to log in to our website, we will ask them for a second
+form of identification. Let&#39;s take a look at Authy&#39;s OneTouch verification first.</p>
 <p><img src="//howtodocs.s3.amazonaws.com/onetouch-approved.gif" alt="Authy OneTouch Approval"></p>
-<p>OneTouch works like so:</p>
+<p>OneTouch works like this:</p>
 <ul>
-<li>We attempt to send a User a <em>OneTouch Approval Request</em></li>
-<li>If the User has OneTouch enabled, we will get a <code>success</code> message back</li>
-<li>The User hits &#39;Approve&#39; in their Authy app</li>
-<li>Authy makes a POST request to our app with an &#39;Approved&#39; status</li>
-<li>We log the User in</li>
+<li>We attempt to send a User a <em>OneTouch Approval Request</em>.</li>
+<li>If the User has OneTouch enabled we will get a <em>success</em> message back.</li>
+<li>The User hits <strong>Approve</strong> in their Authy app.</li>
+<li>Authy makes a POST request to our app with an <em>approved</em> status.</li>
+<li>We log the User in.</li>
 </ul>
-<p>In the next steps we&#39;ll look at how we handle cases where the User does not 
+<p>In the next steps we&#39;ll look at how we handle cases where the User does not
 have OneTouch, or denies the login request.</p>
 </div><div data-file="app/User.php" data-highlight="49-76" class="step"><h2 id="sending-the-onetouch-request">Sending the OneTouch Request</h2>
-<p>When our User logs in we immediately attempt to verify their identity with 
-OneTouch. We will fallback gracefully if they don&#39;t have a OneTouch device, 
+<p>When our User logs in we immediately attempt to verify their identity with
+OneTouch. We will fallback gracefully if they don&#39;t have a OneTouch device,
 but we don&#39;t know until we try.</p>
-<p>Authy lets us pass details with our OneTouch request, including a message, 
-a logo and any other details we want to send. We could easily send any 
-number of details by appending <code>details[&#39;some_detail&#39;]</code>. You could imagine a 
-scenario where we send a OneTouch request to approve a money transfer:</p>
+<p>Authy allows us to input details with our OneTouch request, including a message,
+a logo and so on. We could easily send any amount of details by appending
+<code>details[&#39;some_detail&#39;]</code>. You could imagine a scenario where we send a
+OneTouch request to approve a money transfer.</p>
 <pre><code class="cm-s-monokai lang-php">$params = array(
   &#39;message&#39; =&gt; &quot;Request to send money to Jarod&#39;s vault&quot;,
   &#39;details[From]&#39; =&gt; &quot;Jarod&quot;,
@@ -94,7 +94,8 @@ scenario where we send a OneTouch request to approve a money transfer:</p>
   &#39;details[Currency]&#39; =&gt; &quot;Galleons&quot;,
 )
 </code></pre>
-<p><em>Note: We need some way to check the status of the user&#39;s two-factor process, in this case we do so by updating the <code>$user-&gt;authy_status</code> attribute. It&#39;s important we reset this before we log the user in.</em></p>
+<p>Once we send the request we need to update our User&#39;s <code>authy_status</code> based
+on the response.</p>
 <hr>
 <p><strong>See Also:</strong></p>
 <ul>
@@ -102,51 +103,35 @@ scenario where we send a OneTouch request to approve a money transfer:</p>
 <li><a href="//docs.authy.com/new_doc/authy_onetouch_api#getting-approval-request-info">Getting Approval Request info</a></li>
 </ul>
 </div><div data-file="app/Http/Controllers/Auth/AuthyController.php" data-highlight="31-42" class="step"><h2 id="configuring-the-onetouch-callback">Configuring the OneTouch callback</h2>
-<p>In order for our app to know what the User did after we sent the OneTouch 
-request, we need to register a callback endpoint with Authy.</p>
+<p>In order for our app to know what the <em>user</em> did after we sent the
+OneTouch request, we need to register a callback endpoint with Authy.</p>
 <p><img src="//howtodocs.s3.amazonaws.com/onetouch-callback-endpoint.png" alt="Authy OneTouch Callback"></p>
-<p>Here in our callback, we look up the user using the <code>authy_id</code> sent with the Authy POST request. Ideally at this point we would probably use a websocket to let our client know that we received a response from Authy. However for this version we&#39;re going to keep it simple and just update the <code>authy_status</code> on the User. Then all our client-side code needs to do is check for the user status as &#39;Approved&#39; before logging her in.</p>
+<p>Here in our callback, we look up the <em>user</em> using the <code>authy_id</code> sent with the Authy POST request. Ideally at this point we would probably use a websocket to let our client know that we received a response from Authy.
+However for this version we&#39;re going to keep it simple and just update the
+<code>authy_status</code> on the User.</p>
 <p>Let&#39;s take a look at the client-side code that will be handling this.</p>
-</div><div data-file="public/js/sessions.js" class="step"><h2 id="handling-two-factor-asyncronously">Handling Two-Factor Asyncronously</h2>
-<p>In order for two-factor authentication to be seamless, it is best done 
-asynchronously so that the user doesn&#39;t even know it&#39;s happening.</p>
-<p>We&#39;ve already taken a look at what&#39;s happening on the server side, so let&#39;s 
-step in front of the cameras now and see how our JavaScript is interacting 
+</div><div data-file="public/js/sessions.js" class="step"><h2 id="handle-two-factor-in-the-browser">Handle Two-Factor in the Browser</h2>
+<p>We&#39;ve already taken a look at what&#39;s happening on the server side, so let&#39;s
+step in front of the cameras and see how our JavaScript is interacting
 with those server endpoints.</p>
-<p>First we hijack the login form submit and pass the data to our <code>sessions/create</code> 
-controller using Ajax. Depending on how that endpoint responds we will 
-either ask the User for token or await their OneTouch response.</p>
-<p>If we expect a OneTouch response, we will begin polling <code>/authy/status</code> until 
-we either see OneTouch login was either approved or denied. Let&#39;s take a 
-look at this controller and see what is happening.</p>
+<p>When we expect a OneTouch response, we will begin by polling <code>/authy/status</code>
+until we see an Authy status is not empty. Let&#39;s take a look at this controller
+and see what is happening.</p>
 <hr>
 <p><strong>See Also:</strong></p>
 <ul>
 <li><a href="//api.jquery.com/jquery.post/">jQuery Post method</a></li>
 <li><a href="//getbootstrap.com/javascript/#modals">Bootstrap modals</a></li>
 </ul>
-</div><div data-file="app/Http/Controllers/Auth/AuthyController.php" data-highlight="21-29" class="step"><h2 id="falling-back-to-token">Falling back to Token</h2>
-<p>Here is the endpoint that our javascript is polling. It is waiting for the 
-user status to be either &#39;Approved&#39; or &#39;Denied&#39;. If the User has approved 
-the OneTouch request, will log them in using Laravel&#39;s built in <code>Auth</code> functionality.</p>
-<p>If the request was denied we will ask the User to log in with a Token.</p>
+</div><div data-file="app/Http/Controllers/Auth/AuthyController.php" data-highlight="21-29" class="step"><h2 id="finish-the-2fa-step">Finish the 2FA Step</h2>
+<p>If <code>authy_status</code> is <em>approved</em> the user will be redirected to the
+protected content, otherwise we&#39;ll show the login form with a message that indicates
+the request was <em>denied</em>.</p>
 <hr>
 <p><strong>See Also:</strong></p>
 <ul>
 <li><a href="//laravel.com/docs/5.1/responses#json-responses">Laravel: JSON Responses</a></li>
 </ul>
-</div></div><div data-title="Falling Back to Token" class="chapter"><div data-file="app/User.php" data-highlight="78-83" class="step"><h2 id="sending-a-2fa-token">Sending a 2FA Token</h2>
-<p><img src="//s3.amazonaws.com/howtodocs/2fa-flow5.png" alt="2FA Flow Chart Step 5"></p>
-<p>Once there is an Authy user ID associated with our user model, we can request that an SMS verification token be sent out to the user&#39;s phone. Authy supports token validation in their mobile app as well, so if our user has the app it will default to sending a push notification instead of an SMS.</p>
-<p>We can call this method on the user instance multiple times if needed, which is what happens every time the user clicks &quot;Resend Code&quot; on the web form we are about to look at!</p>
-</div><div data-title="Validate the Code: Step 1" data-file="app/Http/Controllers/Auth/AuthController.php" data-highlight="62-78" class="step"><h2 id="validating-the-code-on-the-controller">Validating the Code on the Controller</h2>
-<p><img src="//s3.amazonaws.com/howtodocs/2fa-flow8.png" alt="2FA Flow Chart Step 8"></p>
-<p>Back in our controller, we grab the 2nd-factor token that was submitted by the user. Before we decide what to do with this token we check to see if the User is part of a validated <code>Session</code>. Once we get the all clear we then check that token by calling <code>verifyToken()</code> on the User model. </p>
-<p>This is a great opportunity to dive-in to the verifyToken() function.</p>
-</div><div data-title="Validate the Code: Step 2" data-file="app/User.php" data-highlight="84-93" class="step"><h2 id="validating-the-code-with-authy">Validating the Code with Authy</h2>
-<p><img src="//s3.amazonaws.com/howtodocs/2fa-flow8.png" alt="2FA Flow Chart Step 8"></p>
-<p>Authy makes it very simple for us to validate the code our user submitted. All we need to do is check with Authy that the code they sent was the same code they entered in our form. To do this our User model simply passes it&#39;s <code>authy_id</code> and the <code>$token</code> to Authy. </p>
-<p>And voilah, we have a User who is valid over two-factors of authentication.</p>
 </div><div class="step"><h2 id="where-to-next-">Where to next?</h2>
 <p>That&#39;s it! We&#39;ve just implemented two-factor auth using three different methods and the latest in Authy technology.</p>
 <p>If you&#39;re a PHP developer working with Twilio, you might want to
@@ -155,12 +140,15 @@ check out these other tutorials.</p>
 <p>Measure the effectiveness of different marketing campaigns with unique phone numbers.</p>
 <p><a href="//www.twilio.com/docs/howto/walkthrough/server-notifications/php/laravel"><strong>Server
 Notifications via SMS</strong></a></p>
-<p>Faster than e-mail and less likely to get blocked, text messages are great for timely alerts and notifications. Learn how to send out SMS (and MMS) notifications to a list of server administrators.</p>
+<p>Faster than e-mail and less likely to get blocked, text messages are great
+for timely alerts and notifications. Learn how to send out SMS (and MMS)
+notifications to a list of server administrators.</p>
 <h3 id="did-this-help-">Did this help?</h3>
 <p>Thanks for checking out this tutorial! If you have any feedback
 to share with us, we&#39;d love to hear it.
-<a href="//www.twilio.com/help/contact">Contact support</a> to let us know what you think.</p>
-</div></div>
+<a href="mailto:deved-oss@twilio.com">Contact the Twilio Developer Education Team</a>
+to let us know what you think.</p>
+</div>
 <div class="saurus-files" style="display:none;"><textarea class="saurus-file" data-file="app/User.php" data-mode="php">PD9waHAgbmFtZXNwYWNlIEFwcDsKCnVzZSBBdXRoeVxBdXRoeUFwaSBhcyBBdXRoeUFwaTsKdXNlIElsbHVtaW5hdGVcQXV0aFxBdXRoZW50aWNhdGFibGU7CnVzZSBJbGx1bWluYXRlXERhdGFiYXNlXEVsb3F1ZW50XE1vZGVsOwp1c2UgSWxsdW1pbmF0ZVxBdXRoXFBhc3N3b3Jkc1xDYW5SZXNldFBhc3N3b3JkOwp1c2UgSWxsdW1pbmF0ZVxDb250cmFjdHNcQXV0aFxBdXRoZW50aWNhdGFibGUgYXMgQXV0aGVudGljYXRhYmxlQ29udHJhY3Q7CnVzZSBJbGx1bWluYXRlXENvbnRyYWN0c1xBdXRoXENhblJlc2V0UGFzc3dvcmQgYXMgQ2FuUmVzZXRQYXNzd29yZENvbnRyYWN0OwoKY2xhc3MgVXNlciBleHRlbmRzIE1vZGVsIGltcGxlbWVudHMgQXV0aGVudGljYXRhYmxlQ29udHJhY3QsIENhblJlc2V0UGFzc3dvcmRDb250cmFjdCB7CgoJdXNlIEF1dGhlbnRpY2F0YWJsZSwgQ2FuUmVzZXRQYXNzd29yZDsKCgkvKioKCSAqIFRoZSBkYXRhYmFzZSB0YWJsZSB1c2VkIGJ5IHRoZSBtb2RlbC4KCSAqCgkgKiBAdmFyIHN0cmluZwoJICovCglwcm90ZWN0ZWQgJHRhYmxlID0gJ3VzZXJzJzsKCgkvKioKCSAqIFRoZSBhdHRyaWJ1dGVzIHRoYXQgYXJlIG1hc3MgYXNzaWduYWJsZS4KCSAqCgkgKiBAdmFyIGFycmF5CgkgKi8KCXByb3RlY3RlZCAkZmlsbGFibGUgPSBbJ25hbWUnLCAnZW1haWwnLCAncGFzc3dvcmQnLCAncGhvbmVfbnVtYmVyJywgJ2NvdW50cnlfY29kZSddOwoKCS8qKgoJICogVGhlIGF0dHJpYnV0ZXMgZXhjbHVkZWQgZnJvbSB0aGUgbW9kZWwncyBKU09OIGZvcm0uCgkgKgoJICogQHZhciBhcnJheQoJICovCglwcm90ZWN0ZWQgJGhpZGRlbiA9IFsncGFzc3dvcmQnLCAncmVtZW1iZXJfdG9rZW4nLCAnYXV0aHlfc3RhdHVzJywgJ2F1dGh5X2lkJ107CgogIHB1YmxpYyBmdW5jdGlvbiByZWdpc3Rlcl9hdXRoeSgpIHsKICAgICRhdXRoeV9hcGkgPSBuZXcgQXV0aHlBcGkoZ2V0ZW52KCdBVVRIWV9BUElfS0VZJykpOwogICAgJHVzZXIgPSAkYXV0aHlfYXBpLT5yZWdpc3RlclVzZXIoJHRoaXMtPmVtYWlsLCAkdGhpcy0+cGhvbmVfbnVtYmVyLCAkdGhpcy0+Y291bnRyeV9jb2RlKTsgLy9lbWFpbCwgY2VsbHBob25lLCBjb3VudHJ5X2NvZGUKCiAgICBpZigkdXNlci0+b2soKSkgewogICAgICR0aGlzLT5hdXRoeV9pZCA9ICR1c2VyLT5pZCgpOwogICAgICR0aGlzLT5zYXZlKCk7CiAgICAgcmV0dXJuIHRydWU7CiAgICB9IGVsc2UgewogICAgICAvLyBzb21ldGhpbmcgd2VudCB3cm9uZwogICAgICByZXR1cm4gZmFsc2U7CiAgICB9CiAgfQoKICBwdWJsaWMgZnVuY3Rpb24gc2VuZE9uZVRvdWNoKCRtZXNzYWdlKSB7CiAgICAvLyByZXNldCBvbmVUb3VjaCBzdGF0dXMKICAgIGlmKCR0aGlzLT5hdXRoeV9zdGF0dXMgIT0gJ3VudmVyaWZpZWQnKSB7CiAgICAgICR0aGlzLT5hdXRoeV9zdGF0dXMgPSAndW52ZXJpZmllZCc7CiAgICAgICR0aGlzLT5zYXZlKCk7CiAgICB9CgogICAgJHBhcmFtcyA9IGFycmF5KAogICAgICAnYXBpX2tleSc9PmdldGVudignQVVUSFlfQVBJX0tFWScpLAogICAgICAnbWVzc2FnZSc9PiRtZXNzYWdlLAogICAgICAnZGV0YWlsc1tFbWFpbF0nPT4kdGhpcy0+ZW1haWwsCiAgICApOwoKICAgICRkZWZhdWx0cyA9IGFycmF5KAogICAgICBDVVJMT1BUX1VSTCA9PiAiaHR0cHM6Ly9hcGkuYXV0aHkuY29tL29uZXRvdWNoL2pzb24vdXNlcnMvJHRoaXMtPmF1dGh5X2lkL2FwcHJvdmFsX3JlcXVlc3RzIiwKICAgICAgQ1VSTE9QVF9QT1NUID0+IHRydWUsCiAgICAgIENVUkxPUFRfUE9TVEZJRUxEUyA9PiAkcGFyYW1zLAogICAgKTsKCiAgICAkY2ggPSBjdXJsX2luaXQoKTsKICAgIGN1cmxfc2V0b3B0X2FycmF5KCRjaCwgJGRlZmF1bHRzKTsKICAgICRvdXRwdXQgPSBjdXJsX2V4ZWMoJGNoKTsKICAgIGN1cmxfY2xvc2UoJGNoKTsKICAgICRqc29uID0ganNvbl9kZWNvZGUoJG91dHB1dCk7CgogICAgcmV0dXJuICRqc29uOwogIH0KCiAgcHVibGljIGZ1bmN0aW9uIHNlbmRUb2tlbigpIHsKICAgICRhdXRoeV9hcGkgPSBuZXcgQXV0aHlBcGkoZ2V0ZW52KCdBVVRIWV9BUElfS0VZJykpOwogICAgJHNtcyA9ICRhdXRoeV9hcGktPnJlcXVlc3RTbXMoJHRoaXMtPmF1dGh5X2lkKTsKCiAgICByZXR1cm4gJHNtcy0+b2soKTsKICB9CgogIHB1YmxpYyBmdW5jdGlvbiB2ZXJpZnlUb2tlbigkdG9rZW4pIHsKICAgICRhdXRoeV9hcGkgPSBuZXcgQXV0aHlBcGkoZ2V0ZW52KCdBVVRIWV9BUElfS0VZJykpOwogICAgJHZlcmlmaWNhdGlvbiA9ICRhdXRoeV9hcGktPnZlcmlmeVRva2VuKCR0aGlzLT5hdXRoeV9pZCwgJHRva2VuKTsKCiAgICBpZigkdmVyaWZpY2F0aW9uLT5vaygpKSB7CiAgICAgIHJldHVybiB0cnVlOwogICAgfSBlbHNlIHsKICAgICAgcmV0dXJuIGZhbHNlOwogICAgfQogIH0KfQo=</textarea>
 <textarea class="saurus-file" data-file=".env.example" data-mode="text">QVBQX0VOVj1sb2NhbApBUFBfREVCVUc9dHJ1ZQpBUFBfS0VZPXVmeGhaaVFjS3hpMWVIVm1HcThNd2ZBY1JnWkhKMVFxCgpEQl9IT1NUPWxvY2FsaG9zdApEQl9EQVRBQkFTRT1hdXRoeV9sYXJhdmVsCkRCX1VTRVJOQU1FPXlvdXJfZGJfdXNlcm5hbWUKREJfUEFTU1dPUkQ9eW91cl9kYl9wYXNzd29yZAoKQVVUSFlfQVBJX0tFWT15b3VyX3Rva2VuCg==</textarea>
 <textarea class="saurus-file" data-file="app/Http/Controllers/Auth/AuthController.php" data-mode="php">PD9waHAgbmFtZXNwYWNlIEFwcFxIdHRwXENvbnRyb2xsZXJzXEF1dGg7Cgp1c2UgQXV0aDsKdXNlIFNlc3Npb247CnVzZSBBcHBcVXNlcjsKdXNlIEFwcFxIdHRwXENvbnRyb2xsZXJzXENvbnRyb2xsZXI7CnVzZSBJbGx1bWluYXRlXEh0dHBcUmVxdWVzdDsKdXNlIElsbHVtaW5hdGVcQ29udHJhY3RzXEF1dGhcR3VhcmQ7CnVzZSBJbGx1bWluYXRlXENvbnRyYWN0c1xBdXRoXFJlZ2lzdHJhcjsKdXNlIElsbHVtaW5hdGVcRm91bmRhdGlvblxBdXRoXEF1dGhlbnRpY2F0ZXNBbmRSZWdpc3RlcnNVc2VyczsKCgpjbGFzcyBBdXRoQ29udHJvbGxlciBleHRlbmRzIENvbnRyb2xsZXIgewoKICAvKgogIHwtLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLQogIHwgUmVnaXN0cmF0aW9uICYgTG9naW4gQ29udHJvbGxlcgogIHwtLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLQogIHwKICB8IFRoaXMgY29udHJvbGxlciBoYW5kbGVzIHRoZSByZWdpc3RyYXRpb24gb2YgbmV3IHVzZXJzLCBhcyB3ZWxsIGFzIHRoZQogIHwgYXV0aGVudGljYXRpb24gb2YgZXhpc3RpbmcgdXNlcnMuIEJ5IGRlZmF1bHQsIHRoaXMgY29udHJvbGxlciB1c2VzCiAgfCBhIHNpbXBsZSB0cmFpdCB0byBhZGQgdGhlc2UgYmVoYXZpb3JzLiBXaHkgZG9uJ3QgeW91IGV4cGxvcmUgaXQ/CiAgfAogICovCgogIHVzZSBBdXRoZW50aWNhdGVzQW5kUmVnaXN0ZXJzVXNlcnM7CgogIC8qKgogICAqIENyZWF0ZSBhIG5ldyBhdXRoZW50aWNhdGlvbiBjb250cm9sbGVyIGluc3RhbmNlLgogICAqCiAgICogQHBhcmFtICBcSWxsdW1pbmF0ZVxDb250cmFjdHNcQXV0aFxHdWFyZCAgJGF1dGgKICAgKiBAcGFyYW0gIFxJbGx1bWluYXRlXENvbnRyYWN0c1xBdXRoXFJlZ2lzdHJhciAgJHJlZ2lzdHJhcgogICAqIEByZXR1cm4gdm9pZAogICAqLwogIHB1YmxpYyBmdW5jdGlvbiBfX2NvbnN0cnVjdChHdWFyZCAkYXV0aCwgUmVnaXN0cmFyICRyZWdpc3RyYXIpCiAgewogICAgJHRoaXMtPmF1dGggPSAkYXV0aDsKICAgICR0aGlzLT5yZWdpc3RyYXIgPSAkcmVnaXN0cmFyOwoKICAgICR0aGlzLT5taWRkbGV3YXJlKCdndWVzdCcsIFsnZXhjZXB0JyA9PiAnZ2V0TG9nb3V0J10pOwogIH0KCiAgcHVibGljIGZ1bmN0aW9uIHBvc3RMb2dpbihSZXF1ZXN0ICRyZXF1ZXN0KSB7CiAgICAkY3JlZGVudGlhbHMgPSAkcmVxdWVzdC0+b25seSgnZW1haWwnLCdwYXNzd29yZCcpOwogICAgaWYoQXV0aDo6dmFsaWRhdGUoJGNyZWRlbnRpYWxzKSkgewogICAgICAkdXNlciA9IFVzZXI6OndoZXJlKCdlbWFpbCcsICc9JywgJHJlcXVlc3QtPmlucHV0KCdlbWFpbCcpKS0+Zmlyc3RPckZhaWwoKTsgCiAgICAgICRzdGF0dXMgPSAkdXNlci0+c2VuZE9uZVRvdWNoKCdSZXF1ZXN0IHRvIExvZ2luIHRvIFR3aWxpbyBkZW1vIGFwcCcpOwogICAgICBTZXNzaW9uOjpzZXQoJ3Bhc3N3b3JkX3ZhbGlkYXRlZCcsIHRydWUpOwogICAgICBTZXNzaW9uOjpzZXQoJ2lkJywgJHVzZXItPmlkKTsKICAgICAgcmV0dXJuIHJlc3BvbnNlKCRzdGF0dXMpOwogICAgfSBlbHNlIHsKICAgICAgICByZXR1cm4gcmVkaXJlY3QoJy9hdXRoL2xvZ2luJyktPndpdGhFcnJvcnMoWwogICAgICAgICAgICAnZW1haWwnID0+ICdUaGUgZW1haWwgYW5kIHBhc3N3b3JkIGNvbWJpbmF0aW9uIHlvdSBlbnRlcmVkIGlzIGluY29ycmVjdC4nLAogICAgICAgIF0pOwogICAgfQogIH0KCiAgcHVibGljIGZ1bmN0aW9uIGdldFR3b2ZhY3RvcigpIHsKICAgIHJldHVybiB2aWV3KCdhdXRoL3R3b2ZhY3RvcicpOwogIH0KCiAgcHVibGljIGZ1bmN0aW9uIHBvc3RUd29mYWN0b3IoUmVxdWVzdCAkcmVxdWVzdCkgewogICAgaWYoIVNlc3Npb246OmdldCgncGFzc3dvcmRfdmFsaWRhdGVkJykgfHwgIVNlc3Npb246OmdldCgnaWQnKSkgewogICAgICByZXR1cm4gcmVkaXJlY3QoJy9hdXRoL2xvZ2luJyk7CiAgICB9CgogICAgaWYoaXNzZXQoJF9QT1NUWyd0b2tlbiddKSkgewogICAgICR1c2VyID0gVXNlcjo6ZmluZChTZXNzaW9uOjpnZXQoJ2lkJykpOwogICAgIGlmKCR1c2VyLT52ZXJpZnlUb2tlbigkcmVxdWVzdC0+aW5wdXQoJ3Rva2VuJykpKSB7CiAgICAgICBBdXRoOjpsb2dpbigkdXNlcik7CiAgICAgICByZXR1cm4gcmVkaXJlY3QoKS0+aW50ZW5kZWQoJy9ob21lJyk7CiAgICAgfSBlbHNlIHsKICAgICAgICByZXR1cm4gcmVkaXJlY3QoJy9hdXRoL3R3b2ZhY3RvcicpLT53aXRoRXJyb3JzKFsKICAgICAgICAgICAgJ3Rva2VuJyA9PiAnVGhlIHRva2VuIHlvdSBlbnRlcmVkIGlzIGluY29ycmVjdCcsCiAgICAgICAgXSk7CiAgICAgfQogICAgfQogIH0KCiAgcHVibGljIGZ1bmN0aW9uIHBvc3RSZWdpc3RlcihSZXF1ZXN0ICRyZXF1ZXN0KQogIHsKICAgICR2YWxpZGF0b3IgPSAkdGhpcy0+cmVnaXN0cmFyLT52YWxpZGF0b3IoJHJlcXVlc3QtPmFsbCgpKTsKICAgIGlmICgkdmFsaWRhdG9yLT5mYWlscygpKQogICAgewogICAgICAkdGhpcy0+dGhyb3dWYWxpZGF0aW9uRXhjZXB0aW9uKAogICAgICAgICRyZXF1ZXN0LCAkdmFsaWRhdG9yCiAgICAgICk7CiAgICB9CiAgICAkdXNlciA9ICR0aGlzLT5yZWdpc3RyYXItPmNyZWF0ZSgkcmVxdWVzdC0+YWxsKCkpOwogICAgJHVzZXItPnJlZ2lzdGVyX2F1dGh5KCk7CiAgICAkdXNlci0+c2VuZFRva2VuKCk7CiAgICBTZXNzaW9uOjpzZXQoJ3Bhc3N3b3JkX3ZhbGlkYXRlZCcsIHRydWUpOwogICAgU2Vzc2lvbjo6c2V0KCdpZCcsICR1c2VyLT5pZCk7CiAgICByZXR1cm4gcmVkaXJlY3QoJy9hdXRoL3R3b2ZhY3RvcicpOwogIH0KCn0K</textarea>

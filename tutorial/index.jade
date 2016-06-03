@@ -1,6 +1,205 @@
-.chapter(data-title='Application Setup')
-  include chapter1
-.chapter(data-title='Logging in with Authy OneTouch')
-  include chapter2
-.chapter(data-title='Falling Back to Token')
-  include chapter3
+.step(data-title='How It Works', data-file='app/User.php', data-highlight='')
+  :markdown
+    ## About this application
+
+    This [PHP](//php.net/) [Laravel](//laravel.com/) sample application is an
+    example of typical login flow. To run this sample
+    app yourself, [download the code and follow the instructions on
+    GitHub](//github.com/TwilioDevEd/authy2fa-laravel).
+
+    Adding two-factor authentication (2FA) to your web application increases the
+    security of your user's data. [Multi-factor authentication](//en.wikipedia.org/wiki/Multi-factor_authentication)
+    determines the identity of a user by validating once by logging into the app,
+    and second by validating their mobile device.
+
+    For the second factor, we will validate that the user has their mobile phone by either:
+    * Sending them a OneTouch push notification to their mobile Authy app or
+    * Sending them a token through their mobile Authy app or
+    * Sending them a one-time token in a text message [sent with Authy via Twilio](//www.authy.com/). Here's how this works at a high level:
+
+    ![2FA High Level](//s3.amazonaws.com/howtodocs/2fa-high-level.png)
+
+    Let's get started! Click the right arrow above to move to the next step
+      of the tutorial.
+
+    ---
+
+    **See Also:**
+    * [Getting Started with Laravel](//laravel.com/docs/5.1)
+    * [PHP Client for Authy](//github.com/authy/authy-php)
+    * [Laravel Basic Authentication](//laravel.com/docs/5.1/authentication#authentication-quickstart)
+
+
+.step(data-file='.env.example', data-highlight='10')
+  :markdown
+    ## Configuring Authy
+
+    If you haven't configured Authy already now is the time to [sign up for Authy](//dashboard.authy.com/signup).
+    Create your first application naming it as you wish. After you create your application,
+    your "production" API key will be visible on your [dashboard](//dashboard.authy.com):
+
+    ![Authy Dashboard](//s3.amazonaws.com/howtodocs/2fa-authy-dashboard.png)
+
+    Once we have an Authy API key we register it as a environment variable.
+
+    Let's take a look at how we register a user with Authy.
+
+    ---
+
+      **See Also:**
+      * [Managing Environment Variables in Laravel](//laravel.com/docs/5.0/configuration#environment-configuration)
+      * [StackOverflow: Installing the Postgres driver for Mac](//stackoverflow.com/questions/61747/installing-pdo-drivers-for-postgresql-on-mac-using-zend-for-eclipse#answer-1286153)
+      * [Better debugging for Laravel](//github.com/barryvdh/laravel-debugbar)
+
+.step(
+  data-file='app/User.php',
+  data-highlight='35-47')
+  :markdown
+    ## Registering a User with Authy
+
+    When a new user _signs up_ for our website, we will call this route. This
+    will save our new user to the database and will register the user
+    with Authy.
+
+    In order to set up your application, Authy only needs the user's _email_,
+    _phone number_ and _country code_. In order to do a _two-factor authentication_,
+    we need to make sure we ask for this information at sign up.
+
+    Once we register the User with Authy we get an **authy id** back. This is
+    very important since it's how we will verify the identity of our User with
+    Authy.
+
+    ---
+
+    **See Also:**
+    * [Enabling a User with Authy](//docs.authy.com/#section-Enabling_two-
+      factor_on_a_user)
+    * [Getting started with Eloquent ORM](//laravel.com/docs/5.1/eloquent)
+
+.step(
+data-file='app/Http/Controllers/Auth/AuthController.php',
+data-highlight='43-56')
+  :markdown
+    ## Logging in with Authy OneTouch
+
+    When a User attempts to log in to our website, we will ask them for a second
+    form of identification. Let's take a look at Authy's OneTouch verification first.
+
+    ![Authy OneTouch Approval](//howtodocs.s3.amazonaws.com/onetouch-approved.gif)
+
+    OneTouch works like this:
+    * We attempt to send a User a _OneTouch Approval Request_.
+    * If the User has OneTouch enabled we will get a _success_ message back.
+    * The User hits **Approve** in their Authy app.
+    * Authy makes a POST request to our app with an _approved_ status.
+    * We log the User in.
+
+    In the next steps we'll look at how we handle cases where the User does not
+    have OneTouch, or denies the login request.
+
+.step(
+data-file='app/User.php',
+data-highlight='49-76')
+  :markdown
+    ## Sending the OneTouch Request
+
+    When our User logs in we immediately attempt to verify their identity with
+    OneTouch. We will fallback gracefully if they don't have a OneTouch device,
+    but we don't know until we try.
+
+    Authy allows us to input details with our OneTouch request, including a message,
+    a logo and so on. We could easily send any amount of details by appending
+    `details['some_detail']`. You could imagine a scenario where we send a
+    OneTouch request to approve a money transfer.
+
+    ```php
+    $params = array(
+      'message' => "Request to send money to Jarod's vault",
+      'details[From]' => "Jarod",
+      'details[Amount]' => "1,000,000",
+      'details[Currency]' => "Galleons",
+    )
+    ```
+    Once we send the request we need to update our User's `authy_status` based
+    on the response.
+
+    ---
+
+    **See Also:**
+    * [Create Approval Requests with Authy](//docs.authy.com/new_doc/authy_onetouch_api#create-an-approval-request-to-be-sent-to-user)
+    * [Getting Approval Request info](//docs.authy.com/new_doc/authy_onetouch_api#getting-approval-request-info)
+
+.step(
+data-file='app/Http/Controllers/Auth/AuthyController.php',
+data-highlight='31-42')
+  :markdown
+    ## Configuring the OneTouch callback
+
+    In order for our app to know what the _user_ did after we sent the
+    OneTouch request, we need to register a callback endpoint with Authy.
+
+    ![Authy OneTouch Callback](//howtodocs.s3.amazonaws.com/onetouch-callback-endpoint.png)
+
+    Here in our callback, we look up the _user_ using the `authy_id` sent with the Authy POST request. Ideally at this point we would probably use a websocket to let our client know that we received a response from Authy.
+    However for this version we're going to keep it simple and just update the
+    `authy_status` on the User.
+
+    Let's take a look at the client-side code that will be handling this.
+
+.step(data-file='public/js/sessions.js')
+  :markdown
+    ## Handle Two-Factor in the Browser
+
+    We've already taken a look at what's happening on the server side, so let's
+    step in front of the cameras and see how our JavaScript is interacting
+    with those server endpoints.
+
+    When we expect a OneTouch response, we will begin by polling `/authy/status`
+    until we see an Authy status is not empty. Let's take a look at this controller
+    and see what is happening.
+
+    ---
+
+    **See Also:**
+    * [jQuery Post method](//api.jquery.com/jquery.post/)
+    * [Bootstrap modals](//getbootstrap.com/javascript/#modals)
+
+.step(data-file='app/Http/Controllers/Auth/AuthyController.php', data-highlight='21-29')
+  :markdown
+    ## Finish the 2FA Step
+
+    If `authy_status` is _approved_ the user will be redirected to the
+    protected content, otherwise we'll show the login form with a message that indicates
+    the request was _denied_.
+
+    ---
+
+    **See Also:**
+    * [Laravel: JSON Responses](//laravel.com/docs/5.1/responses#json-responses)
+
+.step
+  :markdown
+    ## Where to next?
+
+    That's it! We've just implemented two-factor auth using three different methods and the latest in Authy technology.
+
+    If you're a PHP developer working with Twilio, you might want to
+    check out these other tutorials.
+
+    [**Call Tracking**](//www.twilio.com/docs/howto/walkthrough/call-tracking/php/laravel)
+
+    Measure the effectiveness of different marketing campaigns with unique phone numbers.
+
+    [**Server
+    Notifications via SMS**](//www.twilio.com/docs/howto/walkthrough/server-notifications/php/laravel)
+
+    Faster than e-mail and less likely to get blocked, text messages are great
+    for timely alerts and notifications. Learn how to send out SMS (and MMS)
+    notifications to a list of server administrators.
+
+    ### Did this help?
+
+    Thanks for checking out this tutorial! If you have any feedback
+    to share with us, we'd love to hear it.
+    [Contact the Twilio Developer Education Team](mailto:deved-oss@twilio.com)
+    to let us know what you think.
