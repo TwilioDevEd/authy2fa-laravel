@@ -72,6 +72,8 @@ In this example application, you will learn how to create a login system for Lar
 
    `http://[your-heroku-subdomain].herokuapp.com/authy/callback`
 
-## LICENSE
+## Meta
 
-MIT
+* No warranty expressed or implied. Software is as is. Diggity.
+* [MIT License](http://www.opensource.org/licenses/mit-license.html)
+* Lovingly crafted by Twilio Developer Education.
