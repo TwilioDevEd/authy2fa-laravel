@@ -17,7 +17,7 @@ GitHub</a>.</p>
 <p>Adding two-factor authentication (2FA) to your web application increases the
 security of your user&#39;s data. <a href="//en.wikipedia.org/wiki/Multi-factor_authentication">Multi-factor authentication</a>
 determines the identity of a user by validating once by logging into the app,
-and second by validating their mobile device.</p>
+and then by validating their mobile device.</p>
 <p>For the second factor, we will validate that the user has their mobile phone by either:</p>
 <ul>
 <li>Sending them a OneTouch push notification to their mobile Authy app or</li>
@@ -82,7 +82,7 @@ have OneTouch, or denies the login request.</p>
 </div><div data-file="app/User.php" data-highlight="49-76" class="step"><h2 id="sending-the-onetouch-request">Sending the OneTouch Request</h2>
 <p>When our User logs in we immediately attempt to verify their identity with
 OneTouch. We will fallback gracefully if they don&#39;t have a OneTouch device,
-but we don&#39;t know until we try.</p>
+but we won&#39;t know until we try.</p>
 <p>Authy allows us to input details with our OneTouch request, including a message,
 a logo and so on. We could easily send any amount of details by appending
 <code>details[&#39;some_detail&#39;]</code>. You could imagine a scenario where we send a
@@ -110,7 +110,7 @@ OneTouch request, we need to register a callback endpoint with Authy.</p>
 However for this version we&#39;re going to keep it simple and just update the
 <code>authy_status</code> on the User.</p>
 <p>Let&#39;s take a look at the client-side code that will be handling this.</p>
-</div><div data-file="public/js/sessions.js" class="step"><h2 id="handle-two-factor-in-the-browser">Handle Two-Factor in the Browser</h2>
+</div><div data-file="public/js/sessions.js" class="step"><h2 id="handling-two-factor-in-the-browser">Handling Two-Factor in the Browser</h2>
 <p>We&#39;ve already taken a look at what&#39;s happening on the server side, so let&#39;s
 step in front of the cameras and see how our JavaScript is interacting
 with those server endpoints.</p>
@@ -123,7 +123,7 @@ and see what is happening.</p>
 <li><a href="//api.jquery.com/jquery.post/">jQuery Post method</a></li>
 <li><a href="//getbootstrap.com/javascript/#modals">Bootstrap modals</a></li>
 </ul>
-</div><div data-file="app/Http/Controllers/Auth/AuthyController.php" data-highlight="21-29" class="step"><h2 id="finish-the-2fa-step">Finish the 2FA Step</h2>
+</div><div data-file="app/Http/Controllers/Auth/AuthyController.php" data-highlight="21-29" class="step"><h2 id="finishing-the-2fa-step">Finishing the 2FA Step</h2>
 <p>If <code>authy_status</code> is <em>approved</em> the user will be redirected to the
 protected content, otherwise we&#39;ll show the login form with a message that indicates
 the request was <em>denied</em>.</p>
@@ -144,7 +144,7 @@ Notifications via SMS</strong></a></p>
 for timely alerts and notifications. Learn how to send out SMS (and MMS)
 notifications to a list of server administrators.</p>
 <h3 id="did-this-help-">Did this help?</h3>
-<p>Thanks for checking out this tutorial! If you have any feedback
+<p>Thanks for checking this tutorial out! If you have any feedback
 to share with us, we&#39;d love to hear it.
 <a href="mailto:deved-oss@twilio.com">Contact the Twilio Developer Education Team</a>
 to let us know what you think.</p>

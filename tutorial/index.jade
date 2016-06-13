@@ -10,9 +10,10 @@
     Adding two-factor authentication (2FA) to your web application increases the
     security of your user's data. [Multi-factor authentication](//en.wikipedia.org/wiki/Multi-factor_authentication)
     determines the identity of a user by validating once by logging into the app,
-    and second by validating their mobile device.
+    and then by validating their mobile device.
 
     For the second factor, we will validate that the user has their mobile phone by either:
+
     * Sending them a OneTouch push notification to their mobile Authy app or
     * Sending them a token through their mobile Authy app or
     * Sending them a one-time token in a text message [sent with Authy via Twilio](//www.authy.com/). Here's how this works at a high level:
@@ -105,7 +106,7 @@ data-highlight='49-76')
 
     When our User logs in we immediately attempt to verify their identity with
     OneTouch. We will fallback gracefully if they don't have a OneTouch device,
-    but we don't know until we try.
+    but we won't know until we try.
 
     Authy allows us to input details with our OneTouch request, including a message,
     a logo and so on. We could easily send any amount of details by appending
@@ -148,7 +149,7 @@ data-highlight='31-42')
 
 .step(data-file='public/js/sessions.js')
   :markdown
-    ## Handle Two-Factor in the Browser
+    ## Handling Two-Factor in the Browser
 
     We've already taken a look at what's happening on the server side, so let's
     step in front of the cameras and see how our JavaScript is interacting
@@ -166,7 +167,7 @@ data-highlight='31-42')
 
 .step(data-file='app/Http/Controllers/Auth/AuthyController.php', data-highlight='21-29')
   :markdown
-    ## Finish the 2FA Step
+    ## Finishing the 2FA Step
 
     If `authy_status` is _approved_ the user will be redirected to the
     protected content, otherwise we'll show the login form with a message that indicates
@@ -199,7 +200,7 @@ data-highlight='31-42')
 
     ### Did this help?
 
-    Thanks for checking out this tutorial! If you have any feedback
+    Thanks for checking this tutorial out! If you have any feedback
     to share with us, we'd love to hear it.
     [Contact the Twilio Developer Education Team](mailto:deved-oss@twilio.com)
     to let us know what you think.
