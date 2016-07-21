@@ -2,3 +2,4 @@
 /vendor/
 package.json
 .env
+.idea
