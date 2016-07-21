@@ -1,6 +1,10 @@
+<a href="https://www.twilio.com">
+  <img src="https://static0.twilio.com/marketing/bundles/marketing/img/logos/wordmark-red.svg" alt="Twilio" width="250" />
+</a>
 # Two-Factor Authentication with Laravel and Authy
 
-In this example application, you will learn how to create a login system for Laravel applications secured with 2FA using Authy.
+In this example application, you will learn how to create a login system
+ for Laravel applications secured with 2FA using Authy.
 
 [Learn more about this code in our interactive code walkthrough](https://www.twilio.com/docs/howto/walkthrough/two-factor-authentication/php/laravel).
 
@@ -8,69 +12,50 @@ In this example application, you will learn how to create a login system for Lar
 
 [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/TwilioDevEd/authy2fa-laravel)
 
-## Run the Application
+## Local Development
 
 1. Clone the repository and `cd` into it.
-1. Install the application dependencies with [Composer](https://getcomposer.org/)
 
-   ```bash
-   $ composer install
-   ```
+    ```bash
+    $ git clone git@github.com:TwilioDevEd/authy2fa-laravel.git
+    ```
+    
 1. The application uses PostgreSQL as persistence layer. If you
   don't have it already, you should install it. The easiest way is by
   using [Postgres.app](http://postgresapp.com/).
 
 1. Create a database.
 
-  ```bash
-  $ createdb authy_laravel
-  ```
-1. Copy the sample configuration file and edit it to match your configuration.
+    ```bash
+     $ createdb authy_laravel
+    ```
 
-   ```bash
-   $ cp .env.example .env
-   ```
+1. Copy the sample configuration file and edit it to match your 
+   configuration.
 
-  You can find your Authy Api Key for Production at https://dashboard.authy.com/.
+    ```bash
+     $ cp .env.example .env 
+    ```
 
-1. Generating an `APP_KEY`:
+1. Install the dependencies with [Composer](https://getcomposer.org/).
 
-   ```bash
-   $ php artisan key:generate
-   ```
-1. Running the migrations:
+    ```bash
+    $ composer install
+    ```
 
-   ```bash
-   $ php artisan migrate
-   ```
+1. Generate an `APP_KEY`.
 
-1. Expose your application to the wider internet using ngrok. You can look
-   [here](#expose-the-application-to-the-wider-internet) for more details. This step
-   is important because the application won't work as expected if you run it through the
-   localhost.
+    ```bash
+    $ php artisan key:generate
+    ```
+   
+1. Start the server.
 
-   ```bash
-   $ ngrok http 8000
-   ```
+    ```bash
+    $ php artisan serve
+    ```   
 
-   Once ngrok is running, open up your browser and go to your ngrok URL.
-   It will look something like this: `http://9a159ccf.ngrok.io`
-
-1. Running the application using Artisan.
-
-  ```bash
-  $ php artisan serve
-  ```
-
-1. Go to your https://dashboard.authy.com. On the menu to the right you'll find the
-   **Settings**. Go to **OneTouch settings** and update the _Endpoint/URL_ with the
-   endpoint you created. Something like this:
-
-   `http://[your-ngrok-subdomain].ngrok.io/authy/callback`
-
-   If you deployed this application to _Heroku_, the the Endpoint/URL should look like this:
-
-   `http://[your-heroku-subdomain].herokuapp.com/authy/callback`
+1. Check it out at [http://localhost:8000](http://localhost:8000).
 
 ## Meta
 
