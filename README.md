@@ -4,10 +4,6 @@ In this example application, you will learn how to create a login system for Lar
 
 [Learn more about this code in our interactive code walkthrough](https://www.twilio.com/docs/howto/walkthrough/two-factor-authentication/php/laravel).
 
-## Deploy On Heroku
-
-[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/TwilioDevEd/authy2fa-laravel)
-
 ## Run the Application
 
 1. Clone the repository and `cd` into it.
