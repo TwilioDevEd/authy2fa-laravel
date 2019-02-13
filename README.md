@@ -27,7 +27,7 @@ In this example application, you will learn how to create a login system for Lar
    $ cp .env.example .env
    ```
 
-   You can find your Authy Api Key for Production at https://dashboard.authy.com/.
+   You can find your Authy Api Key for Production at https://www.twilio.com/console/authy/.
 
 1. Generating an `APP_KEY`:
 
@@ -58,7 +58,7 @@ In this example application, you will learn how to create a login system for Lar
    $ php artisan serve
    ```
 
-1. Go to your https://dashboard.authy.com. On the menu to the right you'll find the
+1. Go to https://www.twilio.com/console/authy/. On the menu to the right you'll find the
    **Settings**. Go to **OneTouch settings** and update the _Endpoint/URL_ with the
    endpoint you created. Something like this:
 
