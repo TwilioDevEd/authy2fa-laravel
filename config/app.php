@@ -80,7 +80,7 @@ return [
 
 	'key' => env('APP_KEY', 'SomeRandomStringSomeRandomString'),
 
-	'cipher' => MCRYPT_RIJNDAEL_128,
+	'cipher' => 'AES-256-CBC',
 
 	/*
 	|--------------------------------------------------------------------------
@@ -95,7 +95,7 @@ return [
 	|
 	*/
 
-	'log' => 'daily',
+	'log' => 'errorlog',
 
 	/*
 	|--------------------------------------------------------------------------
@@ -193,5 +193,16 @@ return [
 		'View'      => 'Illuminate\Support\Facades\View',
 
 	],
+
+    /*
+	|--------------------------------------------------------------------------
+	| Authy API Key
+	|--------------------------------------------------------------------------
+	|
+	| This is the API key from Authy
+	|
+	*/
+
+    'authy_api_key' => env('AUTHY_API_KEY'),
 
 ];

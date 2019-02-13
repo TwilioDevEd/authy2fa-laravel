@@ -1,46 +1,56 @@
 <?php namespace App\Http\Controllers\Auth;
 
+use App\OneTouch;
 use Auth;
 use Session;
 use App\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Http\Requests;
 
-class AuthyController extends Controller {
+class AuthyController extends Controller
+{
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('guest');
+    }
 
+    /**
+     * Check One Touch authorization status
+     *
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function status(Request $request)
+    {
+        $oneTouch = OneTouch::where('uuid', '=', Session::get('one_touch_uuid'))->firstOrFail();
+        $status = $oneTouch->status;
+        if ($status == 'approved') {
+            Auth::login(User::find(Session::get('id')));
+        }
+        return response()->json(['status' => $status]);
+    }
 
-	/**
-	 * Create a new controller instance.
-	 *
-	 * @return void
-	 */
-	public function __construct()
-	{
-		$this->middleware('guest');
-	}
-
-	// Check status of user 
-	public function status(Request $request) {
-    		$user = User::find(Session::get('id'));
-    		$status = $user->authy_status;
-    		if($status == 'approved') {
-      			Auth::login($user);
-    		}
-    		return response()->json(['status' => $status, 'response' => Session::get('request')]);
-  	}
-
-  	// Public webhook for Authy
-	public function callback(Request $request) {
-		$authy_id = $request->input('authy_id');
-		$user = User::where('authy_id', '=', $authy_id)->firstOrFail();
-		if(isset($user)) {
-		  $user->authy_status = $request->input('status');
-		  $user->save();
-		  return "ok";
-		} else {
-		  return "invalid";
-		}  
-  	}
+    /**
+     * Public webhook for Authy
+     *
+     * @param Request $request
+     * @return string
+     */
+    public function callback(Request $request)
+    {
+        $uuid = $request->input('uuid');
+        $oneTouch = OneTouch::where('uuid', '=', $uuid)->first();
+        if ($oneTouch != null) {
+            $oneTouch->status = $request->input('status');
+            $oneTouch->save();
+            return "ok";
+        }
+        return "invalid uuid: $uuid";
+    }
 
 }

@@ -8,7 +8,7 @@
       </div>
       <div class='modal-body auth-ot'>
         <div class='help-block'>
-          <i class="fa fa-spinner fa-pulse"></i> Waiting for OneTouch Approval ...
+          <i class="fa fa-spinner fa-pulse"></i> Waiting for OneTouch Approval, check your phone ...
         </div>
       </div>
       <div class='modal-body auth-token'>
@@ -50,7 +50,7 @@
               </ul>
             </div>
           @endif
-
+          <div  id="ajax-error" class="alert alert-danger hidden"></div>
           <form id="login-form" class="form-horizontal" role="form" method="POST" action="/auth/login">
             <input type="hidden" name="_token" value="{{ csrf_token() }}">
 

@@ -18,16 +18,16 @@ In this example application, you will learn how to create a login system for Lar
 
 1. Create a database.
 
-  ```bash
-  $ createdb authy_laravel
-  ```
+   ```bash
+   $ createdb authy_laravel
+   ```
 1. Copy the sample configuration file and edit it to match your configuration.
 
    ```bash
    $ cp .env.example .env
    ```
 
-  You can find your Authy Api Key for Production at https://dashboard.authy.com/.
+   You can find your Authy Api Key for Production at https://www.twilio.com/console/authy/.
 
 1. Generating an `APP_KEY`:
 
@@ -54,11 +54,11 @@ In this example application, you will learn how to create a login system for Lar
 
 1. Running the application using Artisan.
 
-  ```bash
-  $ php artisan serve
-  ```
+   ```bash
+   $ php artisan serve
+   ```
 
-1. Go to your https://dashboard.authy.com. On the menu to the right you'll find the
+1. Go to https://www.twilio.com/console/authy/. On the menu to the right you'll find the
    **Settings**. Go to **OneTouch settings** and update the _Endpoint/URL_ with the
    endpoint you created. Something like this:
 
@@ -67,6 +67,20 @@ In this example application, you will learn how to create a login system for Lar
    If you deployed this application to production, the the Endpoint/URL should look like this:
 
    `http://[your-domain].com/authy/callback`
+
+## Run the tests
+
+1. Download phpunit version 4
+
+    ```bash
+    $ wget https://phar.phpunit.de/phpunit-4.0.9.phar -O phpunit.phar
+    ```
+
+1. Run phpunit
+
+    ```bash
+    $ php phpunit.phar
+    ```
 
 ## Meta
 
