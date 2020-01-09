@@ -13,7 +13,7 @@
 		"fideloper/proxy": "~3.3"
     },
 	"require-dev": {
-		"phpunit/phpunit": "~4.0",
+		"phpunit/phpunit": "~7.5",
 		"phpspec/phpspec": "~2.1"
 	},
 	"autoload": {
