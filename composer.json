@@ -10,7 +10,7 @@
 		"authy/php": "~3.0",
 		"ext-curl": "*",
 		"ext-json": "*",
-		"fideloper/proxy": "~3.3"
+		"fideloper/proxy": "~4.4"
     },
 	"require-dev": {
 		"phpunit/phpunit": "~4.0",
